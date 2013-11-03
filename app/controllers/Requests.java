@@ -9,8 +9,7 @@ import models.Request;
 
 import views.html.request.*;
 
-//TODO: RequestController => Requests
-public class RequestController extends Controller {
+public class Requests extends Controller {
 
     final static Form<Request> requestForm = form(Request.class);
 
@@ -23,6 +22,6 @@ public class RequestController extends Controller {
     }
 
     public static Result save() {
-        return redirect(routes.RequestController.index());
+        return redirect(routes.Requests.index());
     }
 }

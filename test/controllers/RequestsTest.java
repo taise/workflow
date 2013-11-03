@@ -1,3 +1,5 @@
+package controllers;
+
 import org.junit.*;
 
 import play.mvc.*;
@@ -6,12 +8,12 @@ import play.test.*;
 import static play.test.Helpers.*;
 import static org.fest.assertions.Assertions.*;
 
-public class RequestControllerTest {
+public class RequestsTest {
 
   @Test
   public void callIndex() {
     Result result = callAction(
-        controllers.routes.ref.RequestController.index()
+        controllers.routes.ref.Requests.index()
         );
     checkResultOk(result);
     assertThat(contentAsString(result)).contains("Request.index");
@@ -20,7 +22,7 @@ public class RequestControllerTest {
   @Test
   public void callNewForm() {
     Result result = callAction(
-        controllers.routes.ref.RequestController.newForm()
+        controllers.routes.ref.Requests.newForm()
         );
     checkResultOk(result);
   }

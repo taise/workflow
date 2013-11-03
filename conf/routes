@@ -5,9 +5,9 @@
 # Home page
 GET     /                           controllers.Application.index()
 
-GET     /requests                   controllers.RequestController.index()
-GET     /requests/new               controllers.RequestController.newForm()
-POST    /requests/save              controllers.RequestController.save()
+GET     /requests                   controllers.Requests.index()
+GET     /requests/new               controllers.Requests.newForm()
+POST    /requests/save              controllers.Requests.save()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

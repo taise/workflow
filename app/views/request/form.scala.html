@@ -4,7 +4,7 @@
 
 <h2>申請書</h2>
 
-@helper.form(action = routes.RequestController.save) {
+@helper.form(action = routes.Requests.save) {
 
 @inputText(
 requestForm("title"),
@@ -25,4 +25,4 @@ requestForm("requestDate"),
 )
 <input type="submit" value="保存">
 }
-<a href="@routes.RequestController.index()">申請書一覧に戻る</a>
+<a href="@routes.Requests.index()">申請書一覧に戻る</a>
