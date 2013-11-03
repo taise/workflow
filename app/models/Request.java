@@ -12,6 +12,7 @@ public class Request extends Model {
   @Id
   public String title;
   public String description;
+  //TODO: requestDate => targetDate
   public String requestDate;
 
   public Date createdAt;
