@@ -24,13 +24,13 @@ public class RequestTest extends WithApplication {
   public void constructor() {
     String title = "Request test";
     String description = "tryNewRequest";
-    String requestDate = "2013-11-03";
+    String targetDate = "2013-11-03";
 
-    Request req = new Request(title, description, requestDate);
+    Request req = new Request(title, description, targetDate);
 
     assertEquals(title, req.title);
     assertEquals(description, req.description);
-    assertEquals(requestDate, req.requestDate);
+    assertEquals(targetDate, req.targetDate);
 
     //TODO: assertDatesAlmostEqual(new Date(), req.createdAt);
     assertThat(new Date(), greaterThanOrEqualTo(req.createdAt));

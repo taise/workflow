@@ -14,17 +14,16 @@ public class Request extends Model {
   public Long id;
   public String title;
   public String description;
-  //TODO: requestDate => targetDate
-  public String requestDate;
+  public String targetDate;
 
   public Date createdAt;
   public Date updatedAt;
 
 
-  public Request(String title, String description, String requestDate) {
+  public Request(String title, String description, String targetDate) {
     this.title = title;
     this.description = description;
-    this.requestDate = requestDate;
+    this.targetDate = targetDate;
 
     this.createdAt = new Date();
     this.updatedAt = new Date();

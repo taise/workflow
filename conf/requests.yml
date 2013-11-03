@@ -3,14 +3,14 @@
 - &req1 !!models.Request
     title:       Request test
     description: create Request 1
-    requestDate: 2013-01-01
+    targetDate: 2013-01-01
 
 - &req2 !!models.Request
     title:       Request test
     description: create Request 2
-    requestDate: 2013-01-02
+    targetDate: 2013-01-02
 
 - &req3 !!models.Request
     title:       Request test
     description: create Request 3
-    requestDate: 2013-01-03
+    targetDate: 2013-01-03

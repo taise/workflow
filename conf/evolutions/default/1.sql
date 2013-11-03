@@ -7,7 +7,7 @@ create table request (
   id                        bigint not null,
   title                     varchar(255),
   description               varchar(255),
-  request_date              varchar(255),
+  target_date               varchar(255),
   created_at                timestamp,
   updated_at                timestamp,
   constraint pk_request primary key (id))
