@@ -1,15 +1,17 @@
 package models;
 
 import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
 
 import javax.persistence.*;
 import play.db.ebean.*;
-import com.avaje.ebean.*;
 
 @Entity
 public class Request extends Model {
 
   @Id
+  public Long id;
   public String title;
   public String description;
   //TODO: requestDate => targetDate
@@ -26,5 +28,12 @@ public class Request extends Model {
 
     this.createdAt = new Date();
     this.updatedAt = new Date();
+  }
+
+  public static Finder<Long, Request> find
+    = new Finder<Long, Request>(Long.class, Request.class);
+  
+  public static List<Request> all() {
+    return find.findList();
   }
 }
