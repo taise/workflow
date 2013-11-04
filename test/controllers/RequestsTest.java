@@ -25,7 +25,7 @@ public class RequestsTest {
     Result result = callAction(
         controllers.routes.ref.Requests.index()
         );
-    checkResultOk(result);
+    assertResultOk(result);
     assertThat(contentAsString(result)).contains("Request test");
   }
 
@@ -34,7 +34,7 @@ public class RequestsTest {
     Result result = callAction(
         controllers.routes.ref.Requests.newForm()
         );
-    checkResultOk(result);
+    assertResultOk(result);
   }
 
   @Test
@@ -51,7 +51,7 @@ public class RequestsTest {
   }
 
 
-  public void checkResultOk(Result result) {
+  public void assertResultOk(Result result) {
     assertThat(status(result)).isEqualTo(OK);
     assertThat(contentType(result)).isEqualTo("text/html");
     assertThat(charset(result)).isEqualTo("utf-8");
