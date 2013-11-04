@@ -44,4 +44,10 @@ public class RequestTest extends WithApplication {
     assertEquals(3, requests.size());
     assertEquals("Request test", requests.get(0).title);
   }
+
+  @Test
+  public void count() {
+    Ebean.save((List) Yaml.load("testData/requests.yml"));
+    assertSame(3, Request.count());
+  }
 }

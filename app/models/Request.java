@@ -35,4 +35,8 @@ public class Request extends Model {
   public static List<Request> all() {
     return find.findList();
   }
+
+  public static Integer count() {
+    return find.findList().size();
+  }
 }
