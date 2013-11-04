@@ -29,6 +29,13 @@ public class Request extends Model {
     this.updatedAt = new Date();
   }
 
+  @Override
+  public void save() {
+    this.createdAt = new Date();
+    this.updatedAt = new Date();
+    super.save();
+  }
+
   public static Finder<Long, Request> find
     = new Finder<Long, Request>(Long.class, Request.class);
   

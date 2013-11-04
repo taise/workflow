@@ -1,6 +1,7 @@
 package controllers;
 
 import org.junit.*;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
@@ -12,14 +13,19 @@ import com.avaje.ebean.*;
 
 import static play.test.Helpers.*;
 import static org.fest.assertions.Assertions.*;
+import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.*;
 
 import models.Request;
 
 public class RequestsTest {
+  @Before
+  public void setUp() {
+    start(fakeApplication(inMemoryDatabase()));
+  }
 
   @Test
   public void callIndex() {
-    start(fakeApplication(inMemoryDatabase()));
     Ebean.save((List) Yaml.load("testData/requests.yml"));
 
     Result result = callAction(
@@ -41,9 +47,9 @@ public class RequestsTest {
   @Test
   public void callCreate() {
     Map<String,String> params = new HashMap<String,String>();
-    params.put("title", "foo");
-    params.put("description", "piyo");
-    params.put("requestDate", "2013-01-01");
+    params.put("title", "Request test");
+    params.put("description", "tryNewRequest");
+    params.put("targetDate", "2013-11-03");
 
     int before_count = Request.count();
     Result result = callAction(

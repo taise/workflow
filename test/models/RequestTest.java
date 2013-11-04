@@ -50,4 +50,28 @@ public class RequestTest extends WithApplication {
     Ebean.save((List) Yaml.load("testData/requests.yml"));
     assertSame(3, Request.count());
   }
+
+  @Test
+  public void save() {
+    String title = "Request test";
+    String description = "tryNewRequest";
+    String targetDate = "2013-11-03";
+
+    Request req = new Request();
+    req.title = title;
+    req.description = description;
+    req.targetDate = targetDate;
+    req.save();
+
+    Request createdReq
+      = Request.find.where()
+                    .orderBy("id desc")
+                    .findUnique();
+
+    assertEquals(title, createdReq.title);
+    assertEquals(description, createdReq.description);
+    assertEquals(targetDate, createdReq.targetDate);
+    assertThat(new Date(), greaterThanOrEqualTo(createdReq.createdAt));
+    assertThat(new Date(), greaterThanOrEqualTo(createdReq.updatedAt));
+  }
 }
