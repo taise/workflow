@@ -27,6 +27,7 @@ public class RequestsTest {
         );
     assertResultOk(result);
     assertThat(contentAsString(result)).contains("Request test");
+    assertThat(contentAsString(result)).contains("3件");
   }
 
   @Test

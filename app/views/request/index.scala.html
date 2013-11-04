@@ -1,7 +1,8 @@
-@(requests: List[models.Request])
+@(requests: List[models.Request])(count: Integer)
 
 <h1>申請書一覧</h1>
 
+<p>@(count)件</p>
 <table class="requestListing">
   <tbody>
     <tr>
