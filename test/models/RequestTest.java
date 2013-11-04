@@ -40,7 +40,7 @@ public class RequestTest extends WithApplication {
   @Test
   public void all() {
     //TODO: want to read at /test/data/requests.yml
-    Ebean.save((List) Yaml.load("requests.yml"));
+    Ebean.save((List) Yaml.load("testData/requests.yml"));
     List<Request> requests = Request.all();
     assertEquals(3, requests.size());
     assertEquals("Request test", requests.get(0).title);
