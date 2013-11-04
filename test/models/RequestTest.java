@@ -29,13 +29,7 @@ public class RequestTest extends WithApplication {
         params.get("targetDate")
         );
 
-    assertEquals(params.get("title"), req.title);
-    assertEquals(params.get("description"), req.description);
-    assertEquals(params.get("targetDate"), req.targetDate);
-
-    //TODO: assertDatesAlmostEqual(new Date(), req.createdAt);
-    assertThat(new Date(), greaterThanOrEqualTo(req.createdAt));
-    assertThat(new Date(), greaterThanOrEqualTo(req.updatedAt));
+    assertRequestModel(req, params);
   }
 
   @Test
@@ -66,12 +60,7 @@ public class RequestTest extends WithApplication {
       = Request.find.where()
                     .orderBy("id desc")
                     .findUnique();
-
-    assertEquals(params.get("title"), createdReq.title);
-    assertEquals(params.get("description"), createdReq.description);
-    assertEquals(params.get("targetDate"), createdReq.targetDate);
-    assertThat(new Date(), greaterThanOrEqualTo(createdReq.createdAt));
-    assertThat(new Date(), greaterThanOrEqualTo(createdReq.updatedAt));
+    assertRequestModel(createdReq, params);
   }
 
 
@@ -81,5 +70,13 @@ public class RequestTest extends WithApplication {
     params.put("description","tryNewRequest");
     params.put("targetDate","2013-11-03");
     return params;
+  }
+
+  public void assertRequestModel(Request req, Map<String,String> params) {
+    assertEquals(params.get("title"), req.title);
+    assertEquals(params.get("description"), req.description);
+    assertEquals(params.get("targetDate"), req.targetDate);
+    assertThat(new Date(), greaterThanOrEqualTo(req.createdAt));
+    assertThat(new Date(), greaterThanOrEqualTo(req.updatedAt));
   }
 }
