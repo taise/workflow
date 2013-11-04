@@ -1,3 +1,28 @@
-@(message: String)
+@(requests: List[models.Request])
 
-@message
+<h1>申請書一覧</h1>
+
+<table class="requestListing">
+  <tbody>
+    <tr>
+      <td>*</td>
+      <td>タイトル</td>
+      <td>内容</td>
+      <td>対象日</td>
+      <td>作成日時</td>
+      <td>更新日時</td>
+    </tr>
+    @for((request, index) <- requests.zipWithIndex) {
+    <tr>
+      <td>@(index + 1)</td>
+      <td>@request.title</td>
+      <td>@request.description</td>
+      <td>@request.targetDate</td>
+      <td>@request.createdAt.format("yyyy/MM/dd HH:mm:ss")</td>
+      <td>@request.updatedAt.format("yyyy/MM/dd HH:mm:ss")</td>
+    </tr>
+    }
+  </tbody>
+</table>
+
+<a href="/requests/new">申請書作成</a>

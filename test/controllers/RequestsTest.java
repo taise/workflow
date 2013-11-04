@@ -3,9 +3,12 @@ package controllers;
 import org.junit.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
+import play.libs.Yaml;
 
 import play.mvc.*;
 import play.test.*;
+import com.avaje.ebean.*;
 
 import static play.test.Helpers.*;
 import static org.fest.assertions.Assertions.*;
@@ -13,18 +16,17 @@ import static org.fest.assertions.Assertions.*;
 import models.Request;
 
 public class RequestsTest {
-  //@Before
-  //public void setUp() {
-  //  start(fakeApplication(inMemoryDatabase()));
-  //}
 
   @Test
   public void callIndex() {
+    start(fakeApplication(inMemoryDatabase()));
+    Ebean.save((List) Yaml.load("testData/requests.yml"));
+
     Result result = callAction(
         controllers.routes.ref.Requests.index()
         );
     checkResultOk(result);
-    assertThat(contentAsString(result)).contains("Request.index");
+    assertThat(contentAsString(result)).contains("Request test");
   }
 
   @Test

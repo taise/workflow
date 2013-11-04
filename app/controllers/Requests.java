@@ -14,7 +14,7 @@ public class Requests extends Controller {
     final static Form<Request> requestForm = form(Request.class);
 
     public static Result index() {
-        return ok(index.render("Request.index"));
+        return ok(index.render(Request.all()));
     }
 
     public static Result newForm() {
