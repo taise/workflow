@@ -7,8 +7,7 @@ import static org.hamcrest.Matchers.*;
 import play.db.ebean.*;
 import com.avaje.ebean.*;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import play.libs.Yaml;
 
 import play.test.WithApplication;
@@ -22,15 +21,17 @@ public class RequestTest extends WithApplication {
 
   @Test
   public void constructor() {
-    String title = "Request test";
-    String description = "tryNewRequest";
-    String targetDate = "2013-11-03";
+    Map<String,String> params = defaultParams();
 
-    Request req = new Request(title, description, targetDate);
+    Request req = new Request(
+        params.get("title"),
+        params.get("description"),
+        params.get("targetDate")
+        );
 
-    assertEquals(title, req.title);
-    assertEquals(description, req.description);
-    assertEquals(targetDate, req.targetDate);
+    assertEquals(params.get("title"), req.title);
+    assertEquals(params.get("description"), req.description);
+    assertEquals(params.get("targetDate"), req.targetDate);
 
     //TODO: assertDatesAlmostEqual(new Date(), req.createdAt);
     assertThat(new Date(), greaterThanOrEqualTo(req.createdAt));
@@ -53,14 +54,12 @@ public class RequestTest extends WithApplication {
 
   @Test
   public void save() {
-    String title = "Request test";
-    String description = "tryNewRequest";
-    String targetDate = "2013-11-03";
+    Map<String,String> params = defaultParams();
 
     Request req = new Request();
-    req.title = title;
-    req.description = description;
-    req.targetDate = targetDate;
+    req.title = params.get("title");
+    req.description = params.get("description");
+    req.targetDate = params.get("targetDate");
     req.save();
 
     Request createdReq
@@ -68,10 +67,19 @@ public class RequestTest extends WithApplication {
                     .orderBy("id desc")
                     .findUnique();
 
-    assertEquals(title, createdReq.title);
-    assertEquals(description, createdReq.description);
-    assertEquals(targetDate, createdReq.targetDate);
+    assertEquals(params.get("title"), createdReq.title);
+    assertEquals(params.get("description"), createdReq.description);
+    assertEquals(params.get("targetDate"), createdReq.targetDate);
     assertThat(new Date(), greaterThanOrEqualTo(createdReq.createdAt));
     assertThat(new Date(), greaterThanOrEqualTo(createdReq.updatedAt));
+  }
+
+
+  public Map defaultParams() {
+    Map<String,String> params = new HashMap<String,String>();
+    params.put("title","Request test");
+    params.put("description","tryNewRequest");
+    params.put("targetDate","2013-11-03");
+    return params;
   }
 }
