@@ -45,10 +45,12 @@ public class RequestsTest {
     params.put("description", "piyo");
     params.put("requestDate", "2013-01-01");
 
+    int before_count = Request.count();
     Result result = callAction(
           controllers.routes.ref.Requests.create(),
           fakeRequest().withFormUrlEncodedBody(params)
         );
+    assertThat(Request.count()).isEqualTo(before_count + 1);
   }
 
 
