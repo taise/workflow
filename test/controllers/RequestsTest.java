@@ -38,14 +38,14 @@ public class RequestsTest {
   }
 
   @Test
-  public void callSave() {
+  public void callCreate() {
     Map<String,String> params = new HashMap<String,String>();
     params.put("title", "foo");
     params.put("description", "piyo");
     params.put("requestDate", "2013-01-01");
 
     Result result = callAction(
-          controllers.routes.ref.Requests.save(),
+          controllers.routes.ref.Requests.create(),
           fakeRequest().withFormUrlEncodedBody(params)
         );
   }

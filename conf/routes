@@ -7,7 +7,7 @@ GET     /                           controllers.Application.index()
 
 GET     /requests                   controllers.Requests.index()
 GET     /requests/new               controllers.Requests.newForm()
-POST    /requests/save              controllers.Requests.save()
+POST    /requests/create            controllers.Requests.create()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

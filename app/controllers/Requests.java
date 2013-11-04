@@ -21,7 +21,7 @@ public class Requests extends Controller {
         return ok(form.render(requestForm));
     }
 
-    public static Result save() {
+    public static Result create() {
         return redirect(routes.Requests.index());
     }
 }
