@@ -8,6 +8,7 @@ create table request (
   title                     varchar(255),
   description               varchar(255),
   target_date               varchar(255),
+  requester_id              bigint,
   created_at                timestamp,
   updated_at                timestamp,
   constraint pk_request primary key (id))
@@ -23,6 +24,7 @@ create table user (
   post                      varchar(255),
   created_at                timestamp,
   updated_at                timestamp,
+  constraint uq_user_email unique (email),
   constraint pk_user primary key (id))
 ;
 
@@ -30,6 +32,8 @@ create sequence request_seq;
 
 create sequence user_seq;
 
+alter table request add constraint fk_request_requester_1 foreign key (requester_id) references user (id) on delete restrict on update restrict;
+create index ix_request_requester_1 on request (requester_id);
 
 
 

@@ -1,9 +1,24 @@
+# User
+
+- !!models.User
+  name:      Steve
+  email:     steve@email.com
+  password:  steve1234!
+  company:   StarBucks
+  division:  Development
+  post:      common
+  createdAt: 2013-01-01 00:00:00
+  updatedAt: 2013-01-01 00:00:00
+
+
 # Requests
 
 - &req1 !!models.Request
     title:       Request test
     description: create Request 1
     targetDate: 2013-01-01
+    requester: !!models.User
+              email: steve@email.com
     createdAt: 2013-01-01 00:00:00
     updatedAt: 2013-01-01 00:00:00
 
@@ -11,6 +26,8 @@
     title:       Request test
     description: create Request 2
     targetDate: 2013-01-02
+    requester: !!models.User
+              email: steve@email.com
     createdAt: 2013-01-01 00:00:00
     updatedAt: 2013-01-01 00:00:00
 
@@ -18,5 +35,7 @@
     title:       Request test
     description: create Request 3
     targetDate: 2013-01-03
+    requester: !!models.User
+              email: steve@email.com
     createdAt: 2013-01-01 00:00:00
     updatedAt: 2013-01-01 00:00:00

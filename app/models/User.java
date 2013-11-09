@@ -13,6 +13,8 @@ public class User extends Model {
   @Id
   public Long id;
   public String name;
+
+  @Column(unique=true)
   public String email;
   public String password;
   public String company;

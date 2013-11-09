@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 
+import models.User;
+
 import javax.persistence.*;
 import play.db.ebean.*;
 
@@ -16,14 +18,20 @@ public class Request extends Model {
   public String description;
   public String targetDate;
 
+  @OneToOne
+  @PrimaryKeyJoinColumn
+  public User requester;
+
   public Date createdAt;
   public Date updatedAt;
 
 
-  public Request(String title, String description, String targetDate) {
+  public Request(String title, String description, String targetDate, User requester) {
     this.title = title;
     this.description = description;
     this.targetDate = targetDate;
+
+    this.requester = requester;
 
     this.createdAt = new Date();
     this.updatedAt = new Date();

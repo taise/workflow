@@ -1,6 +1,8 @@
 package models;
 
 import models.Request;
+import models.User;
+
 import org.junit.*;
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
@@ -16,24 +18,27 @@ public class RequestTest {
   @Before
   public void setUp() {
     start(fakeApplication(inMemoryDatabase()));
+    Ebean.save((List) Yaml.load("testData/requests.yml"));
   }
 
   @Test
   public void constructor() {
     Map<String,String> params = defaultParams();
+    User requester = User.findByEmail("steve@email.com");
 
     Request req = new Request(
         params.get("title"),
         params.get("description"),
-        params.get("targetDate")
+        params.get("targetDate"),
+        requester
         );
 
     assertRequestModel(req, params);
+    assertEquals(requester.name, req.requester.name);
   }
 
   @Test
   public void all() {
-    Ebean.save((List) Yaml.load("testData/requests.yml"));
     List<Request> requests = Request.all();
     assertEquals(3, requests.size());
     assertEquals("Request test", requests.get(0).title);
@@ -41,25 +46,25 @@ public class RequestTest {
 
   @Test
   public void count() {
-    Ebean.save((List) Yaml.load("testData/requests.yml"));
     assertSame(3, Request.count());
   }
 
   @Test
   public void save() {
     Map<String,String> params = defaultParams();
+    User requester = User.findByEmail("steve@email.com");
 
     Request req = new Request();
     req.title = params.get("title");
     req.description = params.get("description");
     req.targetDate = params.get("targetDate");
+    req.requester = requester;
     req.save();
 
     Request createdReq
-      = Request.find.where()
-                    .orderBy("id desc")
-                    .findUnique();
+      = Request.find.byId(req.id);
     assertRequestModel(createdReq, params);
+    assertEquals(requester.name, createdReq.requester.name);
   }
 
 
