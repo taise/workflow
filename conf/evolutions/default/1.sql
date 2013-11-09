@@ -17,6 +17,7 @@ create table user (
   id                        bigint not null,
   user_id                   varchar(255),
   name                      varchar(255),
+  password                  varchar(255),
   company                   varchar(255),
   division                  varchar(255),
   post                      varchar(255),
