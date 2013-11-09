@@ -4,12 +4,18 @@ import java.util.*;
 
 import models.User;
 import org.junit.*;
+import play.libs.Yaml;
+import com.avaje.ebean.*;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
 import static play.test.Helpers.*;
 
 public class UserTest {
+  @Before
+  public void setUp() {
+    start(fakeApplication(inMemoryDatabase()));
+  }
   
   @Test
   public void constructor() {
@@ -24,6 +30,16 @@ public class UserTest {
         params.get("post")
         );
     assertUserModel(user, params);
+  }
+
+  @Test
+  public void findByEmail() {
+    Ebean.save((List) Yaml.load("testData/users.yml"));
+    String email = "alice@email.com";
+
+    User user = User.findByEmail(email);
+    assertNotNull(user);
+    assertEquals(email, user.email);
   }
 
   public Map defaultParams() {
