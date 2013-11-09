@@ -14,6 +14,7 @@ public class Requests extends Controller {
 
     final static Form<Request> requestForm = form(Request.class);
 
+    @Security.Authenticated(Authentication.class)
     public static Result index() {
         List<Request> requests = Request.all();
         return ok(index.render(requests, requests.size()));

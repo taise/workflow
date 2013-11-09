@@ -11,8 +11,8 @@ POST    /requests/create            controllers.Requests.create()
 GET     /requests/show/:id          controllers.Requests.show(id: Long)
 
 # Login
-GET     /loginForm                  controllers.Authentication.loginForm()
-POST    /login                      controllers.Authentication.login()
+GET     /login                      controllers.Application.login()
+POST    /authenticate               controllers.Application.authenticate()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

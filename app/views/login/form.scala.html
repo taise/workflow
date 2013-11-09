@@ -1,7 +1,7 @@
-@(loginForm: Form[Authentication.Login])
+@(loginForm: Form[Application.Login])
 @import helper._
 
-@helper.form(action = routes.Authentication.login()) {
+@helper.form(action = routes.Application.authenticate()) {
   @inputText(
     loginForm("email"),
     '_label -> "Email",
