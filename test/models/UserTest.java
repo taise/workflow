@@ -16,8 +16,8 @@ public class UserTest {
     Map<String,String> params = defaultParams();
 
     User user = new User(
-        params.get("userId"),
         params.get("name"),
+        params.get("email"),
         params.get("password"),
         params.get("company"),
         params.get("division"),
@@ -28,8 +28,8 @@ public class UserTest {
 
   public Map defaultParams() {
     Map<String,String> params = new HashMap<String,String>();
-    params.put("userId","000001");
     params.put("name","Alice");
+    params.put("email","alice@email.com");
     params.put("password","a1234pass!");
     params.put("company","StarBucks");
     params.put("division","Shinjuku branch");
@@ -38,8 +38,8 @@ public class UserTest {
   }
 
   public void assertUserModel(User user, Map<String,String> params) {
-    assertEquals(params.get("userId"), user.userId);
     assertEquals(params.get("name"), user.name);
+    assertEquals(params.get("email"), user.email);
     assertEquals(params.get("password"), user.password);
     assertEquals(params.get("company"), user.company);
     assertEquals(params.get("division"), user.division);
