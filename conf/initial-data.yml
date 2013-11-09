@@ -1,0 +1,11 @@
+# Users
+
+- &user1 !!models.User
+  name:      Alice
+  email:     alice@email.com
+  password:  alice1234!
+  company:   StarBucks
+  division:  Development
+  post:      boss
+  createdAt: 2013-01-01 00:00:00
+  updatedAt: 2013-01-01 00:00:00
