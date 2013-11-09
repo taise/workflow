@@ -47,6 +47,7 @@ public class AuthenticationTest {
 
     assertEquals(400, status(result));
     assertNull(session(result).get("email"));
+    assertThat(contentAsString(result)).contains("alice1@email.com");
   }
 
   @Test
@@ -56,6 +57,7 @@ public class AuthenticationTest {
 
     assertEquals(400, status(result));
     assertNull(session(result).get("email"));
+    assertThat(contentAsString(result)).contains("alice@email.com");
   }
 
   @Test
@@ -74,6 +76,7 @@ public class AuthenticationTest {
     
     assertEquals(400, status(result));
     assertNull(session(result).get("email"));
+    assertThat(contentAsString(result)).contains("alice@email.com");
   }
 
   public void assertResultOk(Result result) {

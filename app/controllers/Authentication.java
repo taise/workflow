@@ -6,7 +6,6 @@ import play.data.*;
 import static play.data.Form.*;
 
 import views.html.authentication.*;
-import views.html.request.*;
 
 import models.User;
 
@@ -18,13 +17,15 @@ public class Authentication extends Controller {
   }
   
   public static Result loginForm() {
-    return ok(loginForm.render(form(Login.class)));
+    return ok(form.render(form(Login.class)));
   }
 
   public static Result login() {
-    Login login = form(Login.class).bindFromRequest().get();
+    Form<Login> loginForm  = form(Login.class).bindFromRequest();
+    Login login = loginForm.get();
+    //TODO: change to Login validation
     if(login.email == null || login.password == null) {
-      return badRequest(loginForm.render(form(Login.class)));
+      return badRequest(form.render(loginForm));
     }
 
     User user = User.findByEmail(login.email);
@@ -35,6 +36,6 @@ public class Authentication extends Controller {
         return redirect(routes.Requests.index());
       } 
     }
-    return badRequest(loginForm.render(form(Login.class)));
+    return badRequest(form.render(loginForm));
   }
 }
