@@ -28,13 +28,11 @@ public class Authentication extends Controller {
       return badRequest(form.render(loginForm));
     }
 
-    User user = User.findByEmail(login.email);
+    User user = User.login(login.email, login.password);
     if(user != null) {
-      if (user.password.equals(login.password)) {
-        session().clear();
-        session("email", login.email);
-        return redirect(routes.Requests.index());
-      } 
+      session().clear();
+      session("email", login.email);
+      return redirect(routes.Requests.index());
     }
     return badRequest(form.render(loginForm));
   }

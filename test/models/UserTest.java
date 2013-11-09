@@ -42,6 +42,27 @@ public class UserTest {
     assertEquals(email, user.email);
   }
 
+  @Test
+  public void successLogin() {
+    Ebean.save((List) Yaml.load("testData/users.yml"));
+    String email = "alice@email.com";
+    String password = "alice1234!";
+
+    User user = User.login(email, password);
+    assertNotNull(user);
+    assertEquals(email, user.email);
+  }
+
+  @Test
+  public void faildLogin() {
+    Ebean.save((List) Yaml.load("testData/users.yml"));
+    String email = "alice1@email.com";
+    String password = "alice1234!";
+
+    User user = User.login(email, password);
+    assertNull(user);
+  }
+
   public Map defaultParams() {
     Map<String,String> params = new HashMap<String,String>();
     params.put("name","Alice");
