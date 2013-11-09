@@ -13,7 +13,7 @@ import play.libs.Yaml;
 import play.test.WithApplication;
 import static play.test.Helpers.*;
 
-public class RequestTest extends WithApplication {
+public class RequestTest {
   @Before
   public void setUp() {
     start(fakeApplication(inMemoryDatabase()));
