@@ -12,8 +12,8 @@ public class User extends Model {
 
   @Id
   public Long id;
-  public String userId;
   public String name;
+  public String email;
   public String password;
   public String company;
   public String division;
@@ -22,10 +22,10 @@ public class User extends Model {
   public Date createdAt;
   public Date updatedAt;
 
-  public User(String userId, String name, String password,
+  public User(String name, String email, String password,
               String company, String division, String post) {
-    this.userId = userId;
     this.name = name;
+    this.email = email;
     this.password = password;
     this.company = company;
     this.division = division;
