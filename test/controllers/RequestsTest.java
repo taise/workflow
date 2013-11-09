@@ -29,7 +29,8 @@ public class RequestsTest {
     Ebean.save((List) Yaml.load("testData/requests.yml"));
 
     Result result = callAction(
-        controllers.routes.ref.Requests.index()
+        controllers.routes.ref.Requests.index(),
+        fakeRequest().withSession("email", "steve@email.com")
         );
     assertResultOk(result);
     assertThat(contentAsString(result)).contains("Request test");
