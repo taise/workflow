@@ -34,9 +34,9 @@ public class UserTest {
   public Map defaultParams() {
     Map<String,String> params = new HashMap<String,String>();
     params.put("userId","000001");
-    params.put("name","Bob");
-    params.put("company","Apple");
-    params.put("division","Development");
+    params.put("name","Alice");
+    params.put("company","StarBucks");
+    params.put("division","Shinjuku branch");
     params.put("post","boss");
     return params;
   }
