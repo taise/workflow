@@ -1,0 +1,23 @@
+@(request: Request)
+
+<h2>申請書</h2>
+
+<div>
+  <label for='id_num'>ID</label>
+  <p id='id_num'>@request.id</p>
+</div>
+
+<div>
+  <label for='title'>タイトル</label>
+  <p id='title'>@request.title<p>
+</div>
+
+<div>
+  <label>内容</label>
+  <p id='description'>@request.description<p>
+</div>
+
+<div>
+  <label for='targetDate'>対象日</label>
+  <p id='targetDate'>@request.targetDate<p>
+</div>

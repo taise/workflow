@@ -59,6 +59,13 @@ public class RequestsTest {
     assertThat(Request.count()).isEqualTo(before_count + 1);
   }
 
+  @Test
+  public void callShow() {
+    Ebean.save((List) Yaml.load("testData/requests.yml"));
+    Result result = callAction(controllers.routes.ref.Requests.show(2));
+    assertResultOk(result);
+    assertThat(contentAsString(result)).contains("create Request 2");
+  }
 
   public void assertResultOk(Result result) {
     assertThat(status(result)).isEqualTo(OK);

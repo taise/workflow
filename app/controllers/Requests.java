@@ -29,4 +29,9 @@ public class Requests extends Controller {
         request.save();
         return redirect(routes.Requests.index());
     }
+
+    public static Result show(Long id) {
+      Request request = Request.find.byId(id);
+      return ok(show.render(request));
+    }
 }
