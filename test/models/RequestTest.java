@@ -10,7 +10,6 @@ import com.avaje.ebean.*;
 import java.util.*;
 import play.libs.Yaml;
 
-import play.test.WithApplication;
 import static play.test.Helpers.*;
 
 public class RequestTest {
