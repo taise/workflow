@@ -20,6 +20,7 @@ public class AuthenticationTest {
     assertResultOk(result);
     assertThat(contentAsString(result)).contains("Email");
     assertThat(contentAsString(result)).contains("Password");
+    assertThat(contentAsString(result)).contains("ログイン");
     assertNull(session(result).get("email"));
   }
 
