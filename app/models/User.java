@@ -34,4 +34,11 @@ public class User extends Model {
     this.createdAt = new Date();
     this.updatedAt = new Date();
   }
+
+  public static Finder<Long, User> find
+    = new Finder<Long, User>(Long.class, User.class);
+  
+  public static User findByEmail(String email) {
+    return User.find.where().eq("email", email).findUnique();
+  }
 }

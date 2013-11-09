@@ -1,8 +1,9 @@
 # Users
 
 - &user1 !!models.User
-  userId:    000001
   name:      Alice
+  email:     alice@email.com
+  password:  alice1234!
   company:   StarBucks
   division:  Development
   post:      boss
@@ -10,8 +11,9 @@
   updatedAt: 2013-01-01 00:00:00
 
 - &user2 !!models.User
-  userId:    000002
   name:      Bob
+  email:     bob@email.com
+  password:  bob1234!
   company:   StarBucks
   division:  Shinjuku branch
   post:      leader
@@ -19,8 +21,9 @@
   updatedAt: 2013-01-02 00:00:00
 
 - &user3 !!models.User
-  userId:    000003
   name:      Charlie
+  email:     charlie@email.com
+  password:  charlie1234!
   company:   StarBucks
   division:  Shinjuku branch
   post:      common
