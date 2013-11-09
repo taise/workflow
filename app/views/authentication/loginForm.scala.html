@@ -1,0 +1,17 @@
+@(loginForm: Form[Authentication.Login])
+@import helper._
+
+<h1>ログイン</h1>
+
+@helper.form(action = routes.Authentication.login()) {
+  @inputText(
+    loginForm("email"),
+    '_label -> "Email",
+    'placeholder -> "input_your@email.com"
+  )
+
+  @inputPassword(
+    loginForm("password"),
+    '_label -> "Password"
+  )
+}
