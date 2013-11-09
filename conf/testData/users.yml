@@ -1,0 +1,28 @@
+# Users
+
+- &user1 !!models.User
+  userId:    000001
+  name:      Alice
+  company:   StarBucks
+  division:  Development
+  post:      boss
+  createdAt: 2013-01-01 00:00:00
+  updatedAt: 2013-01-01 00:00:00
+
+- &user2 !!models.User
+  userId:    000002
+  name:      Bob
+  company:   StarBucks
+  division:  Shinjuku branch
+  post:      leader
+  createdAt: 2013-01-02 00:00:00
+  updatedAt: 2013-01-02 00:00:00
+
+- &user3 !!models.User
+  userId:    000003
+  name:      Charlie
+  company:   StarBucks
+  division:  Shinjuku branch
+  post:      common
+  createdAt: 2013-01-02 00:00:00
+  updatedAt: 2013-01-02 00:00:00
