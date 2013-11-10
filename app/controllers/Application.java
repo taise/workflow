@@ -23,7 +23,7 @@ public class Application extends Controller {
 
     public String validate() {
       if (User.login(email, password) == null) {
-        return "Invalid user or password";
+        return "EmailかPasswordに誤りがあります。";
       }
       return null;
     }

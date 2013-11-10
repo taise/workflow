@@ -69,6 +69,7 @@ public class ApplicationTest {
     assertEquals(400, status(result));
     assertNull(session(result).get("email"));
     assertThat(contentAsString(result)).contains("alice1@email.com");
+    assertThat(contentAsString(result)).contains("EmailかPasswordに誤りがあります。");
   }
 
   @Test
@@ -79,6 +80,7 @@ public class ApplicationTest {
     assertEquals(400, status(result));
     assertNull(session(result).get("email"));
     assertThat(contentAsString(result)).contains("alice@email.com");
+    assertThat(contentAsString(result)).contains("EmailかPasswordに誤りがあります。");
   }
 
   @Test
@@ -88,6 +90,7 @@ public class ApplicationTest {
     
     assertEquals(400, status(result));
     assertNull(session(result).get("email"));
+    assertThat(contentAsString(result)).contains("EmailかPasswordに誤りがあります。");
   }
 
   @Test
@@ -98,6 +101,7 @@ public class ApplicationTest {
     assertEquals(400, status(result));
     assertNull(session(result).get("email"));
     assertThat(contentAsString(result)).contains("alice@email.com");
+    assertThat(contentAsString(result)).contains("EmailかPasswordに誤りがあります。");
   }
 
   public void assertResultOk(Result result) {
