@@ -12,9 +12,10 @@ import models.User;
 
 public class Application extends Controller {
 
-    public static Result index() {
-        return ok(index.render("Your new application is ready."));
-    }
+  @Security.Authenticated(Auth.class)
+  public static Result index() {
+    return redirect(routes.Requests.index());
+  }
 
   public static class Login {
     public String email;

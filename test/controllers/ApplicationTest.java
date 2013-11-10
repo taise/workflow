@@ -22,6 +22,25 @@ public class ApplicationTest {
   }
 
   @Test
+  public void callRouteUrlWithSession() {
+    Result result = callAction(
+        controllers.routes.ref.Application.index(),
+        fakeRequest().withSession("email", "alice@email.com")
+        );
+    assertEquals(303, status(result));
+    assertEquals("/requests", header("Location", result));
+  }
+
+  @Test
+  public void callRouteUrlNoSession() {
+    Result result = callAction(
+        controllers.routes.ref.Application.index()
+        );
+    assertEquals(303, status(result));
+    assertEquals("/login", header("Location", result));
+  }
+
+  @Test
   public void callLoginForm() {
     Result result = callAction(
         controllers.routes.ref.Application.login()
