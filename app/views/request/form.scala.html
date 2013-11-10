@@ -2,27 +2,38 @@
 
 @import helper._
 
-<h2>申請書</h2>
+@main {
+<div class="row">
+  <div class="page-header">
+    <h2>申請書</h2>
+  </div>
 
-@helper.form(action = routes.Requests.create) {
+  <div class="col-xs-6">
+    @helper.form(action = routes.Requests.create) {
 
-@inputText(
-requestForm("title"),
-'_label -> "タイトル",
-'placeholder -> "入力してください"
-)
+    @inputText(
+    requestForm("title"),
+    '_label -> "タイトル",
+    'placeholder -> "入力してください",
+    'class -> "form-control"
+    )
 
-@inputText(
-requestForm("description"),
-'_label -> "内容",
-'placeholder -> "例: サンプルワークフローシステムです。"
-)
+    @textarea(
+    requestForm("description"),
+    '_label -> "内容",
+    'placeholder -> "例: サンプルワークフローシステムです。",
+    'class -> "form-control"
+    )
 
-@inputText(
-requestForm("targetDate"),
-'_label -> "対象日",
-'placeholder -> "2013-01-01"
-)
-<input type="submit" value="保存">
+    @inputDate(
+    requestForm("targetDate"),
+    '_label -> "対象日",
+    'placeholder -> "2013-01-01"
+    )
+
+    <input type="submit" class="btn btn-primary active" value="保存">
+    <a href="@routes.Requests.index()" class="btn btn-default" role="button">申請書一覧に戻る</a>
+    }
+  </div>
+</div>
 }
-<a href="@routes.Requests.index()">申請書一覧に戻る</a>
