@@ -35,8 +35,8 @@ public class Application extends Controller {
 
   public static Result authenticate() {
     Form<Login> loginForm  = form(Login.class).bindFromRequest();
-    // hasErrors check to form validate result
     if(loginForm.hasErrors()) {
+      //TODO: change return URL to /login
       return badRequest(form.render(loginForm));
     } else {
       session("email", loginForm.get().email);
