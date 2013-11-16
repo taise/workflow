@@ -20,7 +20,7 @@
     </thead>
     <tbody>
       @for((request, index) <- requests.zipWithIndex) {
-      <tr>
+      <tr onclick="javascript:location.href='/requests/show/@request.id'">
         <td>@(index + 1)</td>
         <td>@request.title</td>
         <td>@request.description</td>
