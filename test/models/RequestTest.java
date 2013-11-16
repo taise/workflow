@@ -61,12 +61,12 @@ public class RequestTest {
     req.requester = requester;
     req.save();
 
+    assertNotNull(req.id);
     Request createdReq
       = Request.find.byId(req.id);
     assertRequestModel(createdReq, params);
     assertEquals(requester.name, createdReq.requester.name);
   }
-
 
   public Map defaultParams() {
     Map<String,String> params = new HashMap<String,String>();
