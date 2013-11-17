@@ -1,15 +1,15 @@
 package controllers;
 
 import org.junit.*;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.List;
+import java.util.*;
 import play.libs.Yaml;
 
 import play.mvc.*;
 import play.test.*;
 import com.avaje.ebean.*;
+
+import play.data.*;
+import static play.data.Form.*;
 
 import static play.test.Helpers.*;
 import static org.fest.assertions.Assertions.*;
@@ -17,6 +17,7 @@ import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
 
 import models.Request;
+import play.*;
 
 public class RequestsTest {
   @Before
@@ -57,7 +58,17 @@ public class RequestsTest {
           controllers.routes.ref.Requests.create(),
           fakeRequest().withFormUrlEncodedBody(params)
         );
+
     assertThat(Request.count()).isEqualTo(before_count + 1);
+  }
+
+  @Test(expected=IllegalStateException.class)
+  public void validate() {
+    Map<String,String> params = new HashMap<String,String>();
+    Result result = callAction(
+          controllers.routes.ref.Requests.create(),
+          fakeRequest().withFormUrlEncodedBody(params)
+        );
   }
 
   @Test

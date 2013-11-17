@@ -8,14 +8,24 @@ import models.User;
 
 import javax.persistence.*;
 import play.db.ebean.*;
+import play.data.format.*;
+import play.data.validation.Constraints.*;
+import play.api.data.validation.*;
 
 @Entity
 public class Request extends Model {
 
   @Id
   public Long id;
+
+  @Required
   public String title;
+
+  @Required
   public String description;
+
+  @Required
+  @Formats.DateTime(pattern="yyyy-MM-dd")
   public String targetDate;
 
   @OneToOne
@@ -35,6 +45,11 @@ public class Request extends Model {
 
     this.createdAt = new Date();
     this.updatedAt = new Date();
+  }
+
+  public List<ValidationError> validate() {
+    List<ValidationError> errors = new ArrayList<ValidationError>();
+    return null;
   }
 
   @Override
