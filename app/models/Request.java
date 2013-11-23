@@ -2,6 +2,8 @@ package models;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.ArrayList;
 
 import models.User;
@@ -9,8 +11,8 @@ import models.User;
 import javax.persistence.*;
 import play.db.ebean.*;
 import play.data.format.*;
+import play.data.validation.ValidationError;
 import play.data.validation.Constraints.*;
-import play.api.data.validation.*;
 
 @Entity
 public class Request extends Model {
@@ -47,8 +49,14 @@ public class Request extends Model {
     this.updatedAt = new Date();
   }
 
-  public List<ValidationError> validate() {
-    List<ValidationError> errors = new ArrayList<ValidationError>();
+  public Map<String, List<ValidationError>> validate() {
+    Map<String, List<ValidationError>> errors = null;
+    if (title == "" || title == null) {
+      errors = new HashMap<String, List<ValidationError>>();
+      List<ValidationError> list = new ArrayList<ValidationError>();
+      list.add(new ValidationError("title", "title is blank"));
+      errors.put("title", list);
+    }
     return null;
   }
 

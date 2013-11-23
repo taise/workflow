@@ -17,6 +17,7 @@ import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
 
 import models.Request;
+import models.User;
 import play.*;
 
 public class RequestsTest {
@@ -48,10 +49,7 @@ public class RequestsTest {
 
   @Test
   public void callCreate() {
-    Map<String,String> params = new HashMap<String,String>();
-    params.put("title", "Request test");
-    params.put("description", "tryNewRequest");
-    params.put("targetDate", "2013-11-03");
+    Map<String,String> params = defaultParams();
 
     int before_count = Request.count();
     Result result = callAction(
@@ -62,21 +60,22 @@ public class RequestsTest {
     assertThat(Request.count()).isEqualTo(before_count + 1);
   }
 
-  @Test(expected=IllegalStateException.class)
-  public void validate() {
-    Map<String,String> params = new HashMap<String,String>();
-    Result result = callAction(
-          controllers.routes.ref.Requests.create(),
-          fakeRequest().withFormUrlEncodedBody(params)
-        );
-  }
-
   @Test
   public void callShow() {
     Ebean.save((List) Yaml.load("testData/requests.yml"));
     Result result = callAction(controllers.routes.ref.Requests.show(2));
     assertResultOk(result);
     assertThat(contentAsString(result)).contains("create Request 2");
+  }
+
+  public Map<String,String> defaultParams() {
+    Map<String,String> params = new HashMap<String,String>();
+    User user = User.find.findUnique();
+    params.put("title", "Request test");
+    params.put("description", "tryNewRequest");
+    params.put("targetDate", "2013-11-03");
+    params.put("requester.id", user.id.toString());
+    return params;
   }
 
   public void assertResultOk(Result result) {

@@ -26,6 +26,9 @@ public class Requests extends Controller {
 
     public static Result create() {
         Form<Request> requestForm = form(Request.class).bindFromRequest();
+        if(requestForm.hasErrors()) {
+          badRequest(form.render(requestForm));
+        }
         Request request = requestForm.get();
         request.save();
         return redirect(routes.Requests.index());
