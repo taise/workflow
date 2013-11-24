@@ -17,7 +17,8 @@
       }
       @helper.form(action = routes.Requests.create, 'class -> "form-horizontal") {
 
-      @text(requestForm("title"),
+      @input(requestForm("title"),
+      inputType = "text",
       label = "タイトル",
       placeholder = "タイトルを入力してください",
       help = Messages("error.title")
@@ -29,16 +30,12 @@
       help = Messages("error.description")
       )
 
-      <div class='form-group @if(requestForm.error("targetDate") != null) {has-error}'>
-        <label class="col-xs-2 control-label" for="targetDate">対象日</label>
-        <div class="col-xs-10">
-          <input type="date" id="targetDate" name="targetDate" value='@requestForm.data.get("targetDate")'
-          class="form-control col-sm-10">
-          @if(requestForm.error("targetDate") != null) {
-          <span class="help-block">@Messages("error.targetDate")</span>
-          }
-        </div>
-      </div>
+      @input(requestForm("targetDate"),
+      inputType = "date",
+      label = "対象日",
+      placeholder = "",
+      help = Messages("error.targetDate")
+      )
 
       <div class="button-group">
         <input type="submit" class="btn btn-primary active" value="保存">
