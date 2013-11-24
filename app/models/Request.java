@@ -3,7 +3,6 @@ package models;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
 import java.util.ArrayList;
 
 import models.User;
@@ -49,16 +48,15 @@ public class Request extends Model {
     this.updatedAt = new Date();
   }
 
-  public Map<String, List<ValidationError>> validate() {
-    Map<String, List<ValidationError>> errors = null;
-    if (title == null) {
-      errors = new HashMap<String, List<ValidationError>>();
-      List<ValidationError> list = new ArrayList<ValidationError>();
-      list.add(new ValidationError("title", "title is blank"));
-      errors.put("title", list);
-    }
-    return errors;
-  }
+  //public List<ValidationError> validate() {
+  //  List<ValidationError> errors = new ArrayList<ValidationError>();
+  //  if (title == null || title.length() == 0) {
+  //  errors.add(
+  //      new ValidationError("title", "タイトルが入力されていません。")
+  //      );
+  //  }
+  //  return errors.isEmpty() ? null : errors;
+  //}
 
   @Override
   public void save() {

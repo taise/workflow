@@ -33,6 +33,8 @@ public class FormValidationTest {
       Result result = callCreateAction(params);
 
       assertThat(status(result)).isEqualTo(400);
+      assertThat(contentAsString(result)).contains("入力内容を確認してください。");
+      assertThat(contentAsString(result)).contains("タイトルが入力されていません。");
       assertThat(Request.count()).isEqualTo(before_count);
     }
 
@@ -45,6 +47,8 @@ public class FormValidationTest {
       Result result = callCreateAction(params);
 
       assertThat(status(result)).isEqualTo(400);
+      assertThat(contentAsString(result)).contains("入力内容を確認してください。");
+      assertThat(contentAsString(result)).contains("申請内容が入力されていません。");
       assertThat(Request.count()).isEqualTo(before_count);
     }
 
@@ -57,6 +61,8 @@ public class FormValidationTest {
       Result result = callCreateAction(params);
 
       assertThat(status(result)).isEqualTo(400);
+      assertThat(contentAsString(result)).contains("入力内容を確認してください。");
+      assertThat(contentAsString(result)).contains("対象日が選択されていません。");
       assertThat(Request.count()).isEqualTo(before_count);
     }
 

@@ -1,0 +1,4 @@
+error.form=入力内容を確認してください。
+error.title=タイトルが入力されていません。
+error.description=申請内容が入力されていません。
+error.targetDate=対象日が選択されていません。

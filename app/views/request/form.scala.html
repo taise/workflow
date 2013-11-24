@@ -10,29 +10,43 @@
     </div>
 
     <div class="col-xs-6">
+      @if(requestForm.hasErrors) {
+      <p class="error alert alert-danger">
+        @Messages("error.form")
+      </p>
+      }
       @helper.form(action = routes.Requests.create, 'class -> "form-horizontal") {
 
-      <div class="form-group">
+      <div class='form-group @if(requestForm.error("title") != null) {has-error}'>
         <label class="col-xs-2 control-label" for="title">タイトル</label>
         <div class="col-xs-10">
           <input type="text" id="title" name="title"
           placeholder="入力してください" class="form-control col-sm-10">
+          @if(requestForm.error("title") != null) {
+          <span class="help-block">@Messages("error.title")</span>
+          }
         </div>
       </div>
 
-      <div class="form-group">
-        <label class="col-xs-2 control-label" for="description">内容</label>
+      <div class='form-group @if(requestForm.error("description") != null) {has-error}'>
+        <label class="col-xs-2 control-label" for="description">申請内容</label>
         <div class="col-xs-10">
           <textarea id="description" name="description" class="form-control col-sm-10"
              placeholder="例: サンプルワークフローシステムです。"></textarea>
+          @if(requestForm.error("description") != null) {
+          <span class="help-block">@Messages("error.description")</span>
+          }
         </div>
       </div>
 
-      <div class="form-group">
+      <div class='form-group @if(requestForm.error("targetDate") != null) {has-error}'>
         <label class="col-xs-2 control-label" for="targetDate">対象日</label>
         <div class="col-xs-10">
           <input type="date" id="targetDate" name="targetDate"
           class="form-control col-sm-10">
+          @if(requestForm.error("targetDate") != null) {
+          <span class="help-block">@Messages("error.targetDate")</span>
+          }
         </div>
       </div>
 
