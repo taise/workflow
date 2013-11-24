@@ -1,7 +1,7 @@
 @(requestForm: Form[Request])
 
 @import helper._
-
+@import bootstrap3._
 
 @main {
   <div class="row">
@@ -17,17 +17,12 @@
       }
       @helper.form(action = routes.Requests.create, 'class -> "form-horizontal") {
 
-      <div class='form-group @if(requestForm.error("title") != null) {has-error}'>
-        <label class="col-xs-2 control-label" for="title">タイトル</label>
-        <div class="col-xs-10">
-          <input type="text" id="title" name="title" value='@requestForm.data.get("title")'
-          placeholder="入力してください" class="form-control col-sm-10">
-          @if(requestForm.error("title") != null) {
-          <span class="help-block">@Messages("error.title")</span>
-          }
-        </div>
-      </div>
-
+      @text(requestForm("title"),
+      label = "タイトル",
+      placeholder = "タイトルを入力してください",
+      help = Messages("error.title")
+      )
+      
       <div class='form-group @if(requestForm.error("description") != null) {has-error}'>
         <label class="col-xs-2 control-label" for="description">申請内容</label>
         <div class="col-xs-10">
