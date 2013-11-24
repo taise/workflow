@@ -18,10 +18,12 @@ public class Requests extends Controller {
         return ok(index.render(requests, requests.size()));
     }
 
+    @Security.Authenticated(Auth.class)
     public static Result newForm() {
         return ok(form.render(form(Request.class)));
     }
 
+    @Security.Authenticated(Auth.class)
     public static Result create() {
         Form<Request> requestForm = form(Request.class).bindFromRequest();
         if(requestForm.hasErrors()) {
@@ -32,6 +34,7 @@ public class Requests extends Controller {
         return redirect(routes.Requests.index());
     }
 
+    @Security.Authenticated(Auth.class)
     public static Result show(Long id) {
       Request request = Request.find.byId(id);
       return ok(show.render(request));
