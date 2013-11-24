@@ -48,16 +48,6 @@ public class Request extends Model {
     this.updatedAt = new Date();
   }
 
-  //public List<ValidationError> validate() {
-  //  List<ValidationError> errors = new ArrayList<ValidationError>();
-  //  if (title == null || title.length() == 0) {
-  //  errors.add(
-  //      new ValidationError("title", "タイトルが入力されていません。")
-  //      );
-  //  }
-  //  return errors.isEmpty() ? null : errors;
-  //}
-
   @Override
   public void save() {
     this.createdAt = new Date();
