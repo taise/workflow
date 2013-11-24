@@ -7,8 +7,8 @@ GET     /                           controllers.Application.index()
 
 GET     /requests                   controllers.Requests.index()
 GET     /requests/new               controllers.Requests.newForm()
-POST    /requests/create            controllers.Requests.create()
-GET     /requests/show/:id          controllers.Requests.show(id: Long)
+POST    /requests                   controllers.Requests.create()
+GET     /requests/:id               controllers.Requests.show(id: Long)
 
 # Login
 GET     /login                      controllers.Application.login()
