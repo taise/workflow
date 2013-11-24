@@ -20,7 +20,7 @@
       <div class='form-group @if(requestForm.error("title") != null) {has-error}'>
         <label class="col-xs-2 control-label" for="title">タイトル</label>
         <div class="col-xs-10">
-          <input type="text" id="title" name="title"
+          <input type="text" id="title" name="title" value='@requestForm.data.get("title")'
           placeholder="入力してください" class="form-control col-sm-10">
           @if(requestForm.error("title") != null) {
           <span class="help-block">@Messages("error.title")</span>
@@ -32,7 +32,7 @@
         <label class="col-xs-2 control-label" for="description">申請内容</label>
         <div class="col-xs-10">
           <textarea id="description" name="description" class="form-control col-sm-10"
-             placeholder="例: サンプルワークフローシステムです。"></textarea>
+             placeholder="例: サンプルワークフローシステムです。">@requestForm.data.get("description")</textarea>
           @if(requestForm.error("description") != null) {
           <span class="help-block">@Messages("error.description")</span>
           }
@@ -42,7 +42,7 @@
       <div class='form-group @if(requestForm.error("targetDate") != null) {has-error}'>
         <label class="col-xs-2 control-label" for="targetDate">対象日</label>
         <div class="col-xs-10">
-          <input type="date" id="targetDate" name="targetDate"
+          <input type="date" id="targetDate" name="targetDate" value='@requestForm.data.get("targetDate")'
           class="form-control col-sm-10">
           @if(requestForm.error("targetDate") != null) {
           <span class="help-block">@Messages("error.targetDate")</span>

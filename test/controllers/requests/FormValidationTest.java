@@ -19,6 +19,10 @@ public class FormValidationTest {
 
   public static class ValidationFail {
 
+    public static final String TITLE = "Request title test";
+    public static final String DESCRIPTION = "Request description test.\nThis is other line.";
+    public static final String TARGETDATE = "2013-11-03";
+
     @Before
     public void setUp() {
       start(fakeApplication(inMemoryDatabase()));
@@ -33,6 +37,8 @@ public class FormValidationTest {
       Result result = callCreateAction(params);
 
       assertHasBlank(result, count);
+      assertThat(contentAsString(result)).contains(DESCRIPTION);
+      assertThat(contentAsString(result)).contains(TARGETDATE);
       assertThat(contentAsString(result)).contains("タイトルが入力されていません。");
     }
 
@@ -41,10 +47,12 @@ public class FormValidationTest {
       Map<String,String> params = defaultParams();
       params.remove("description");
 
-      int before_count = Request.count();
+      int count = Request.count();
       Result result = callCreateAction(params);
 
       assertHasBlank(result, count);
+      assertThat(contentAsString(result)).contains(TITLE);
+      assertThat(contentAsString(result)).contains(TARGETDATE);
       assertThat(contentAsString(result)).contains("申請内容が入力されていません。");
     }
 
@@ -53,10 +61,12 @@ public class FormValidationTest {
       Map<String,String> params = defaultParams();
       params.remove("targetDate");
 
-      int before_count = Request.count();
+      int count = Request.count();
       Result result = callCreateAction(params);
 
       assertHasBlank(result, count);
+      assertThat(contentAsString(result)).contains(TITLE);
+      assertThat(contentAsString(result)).contains(DESCRIPTION);
       assertThat(contentAsString(result)).contains("対象日が選択されていません。");
     }
 
@@ -64,7 +74,7 @@ public class FormValidationTest {
     public void blankAll() {
       Map<String,String> params = new HashMap<String,String>();
 
-      int before_count = Request.count();
+      int count = Request.count();
       Result result = callCreateAction(params);
 
       assertHasBlank(result, count);
@@ -77,9 +87,9 @@ public class FormValidationTest {
     public Map<String,String> defaultParams() {
       Map<String,String> params = new HashMap<String,String>();
       User user = User.find.findUnique();
-      params.put("title", "Request test");
-      params.put("description", "tryNewRequest");
-      params.put("targetDate", "2013-11-03");
+      params.put("title", TITLE);
+      params.put("description", DESCRIPTION);
+      params.put("targetDate", TARGETDATE);
       params.put("requester.id", user.id.toString());
       return params;
     }
