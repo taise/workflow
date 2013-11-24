@@ -29,13 +29,11 @@ public class FormValidationTest {
       Map<String,String> params = defaultParams();
       params.remove("title");
 
-      int before_count = Request.count();
+      int count = Request.count();
       Result result = callCreateAction(params);
 
-      assertThat(status(result)).isEqualTo(400);
-      assertThat(contentAsString(result)).contains("入力内容を確認してください。");
+      assertHasBlank(result, count);
       assertThat(contentAsString(result)).contains("タイトルが入力されていません。");
-      assertThat(Request.count()).isEqualTo(before_count);
     }
 
     @Test
@@ -46,10 +44,8 @@ public class FormValidationTest {
       int before_count = Request.count();
       Result result = callCreateAction(params);
 
-      assertThat(status(result)).isEqualTo(400);
-      assertThat(contentAsString(result)).contains("入力内容を確認してください。");
+      assertHasBlank(result, count);
       assertThat(contentAsString(result)).contains("申請内容が入力されていません。");
-      assertThat(Request.count()).isEqualTo(before_count);
     }
 
     @Test
@@ -60,11 +56,23 @@ public class FormValidationTest {
       int before_count = Request.count();
       Result result = callCreateAction(params);
 
-      assertThat(status(result)).isEqualTo(400);
-      assertThat(contentAsString(result)).contains("入力内容を確認してください。");
+      assertHasBlank(result, count);
       assertThat(contentAsString(result)).contains("対象日が選択されていません。");
-      assertThat(Request.count()).isEqualTo(before_count);
     }
+
+    @Test
+    public void blankAll() {
+      Map<String,String> params = new HashMap<String,String>();
+
+      int before_count = Request.count();
+      Result result = callCreateAction(params);
+
+      assertHasBlank(result, count);
+      assertThat(contentAsString(result)).contains("タイトルが入力されていません。");
+      assertThat(contentAsString(result)).contains("申請内容が入力されていません。");
+      assertThat(contentAsString(result)).contains("対象日が選択されていません。");
+    }
+
 
     public Map<String,String> defaultParams() {
       Map<String,String> params = new HashMap<String,String>();
@@ -81,6 +89,12 @@ public class FormValidationTest {
           controllers.routes.ref.Requests.create(),
           fakeRequest().withFormUrlEncodedBody(params)
           );
+    }
+
+    public void assertHasBlank(Result result, int count) {
+      assertThat(status(result)).isEqualTo(400);
+      assertThat(contentAsString(result)).contains("入力内容を確認してください。");
+      assertThat(Request.count()).isEqualTo(count);
     }
   }
 }
