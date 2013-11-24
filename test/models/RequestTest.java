@@ -79,13 +79,6 @@ public class RequestTest {
     requestForm.get();
   }
 
-  @Test
-  public void validateErrorMessages() {
-    Form<Request> requestForm = form(Request.class);
-    List<ValidationError> errors = requestForm.globalErrors();
-    fail("TODO: examine about how to assert error messages");
-  }
-
   public Map<String, String> defaultParams() {
     Map<String,String> params = new HashMap<String,String>();
     params.put("title","Request test");

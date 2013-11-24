@@ -1,4 +1,4 @@
-package controllers;
+package controllers.requests;
 
 import org.junit.*;
 import java.util.*;

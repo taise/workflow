@@ -51,13 +51,13 @@ public class Request extends Model {
 
   public Map<String, List<ValidationError>> validate() {
     Map<String, List<ValidationError>> errors = null;
-    if (title == "" || title == null) {
+    if (title == null) {
       errors = new HashMap<String, List<ValidationError>>();
       List<ValidationError> list = new ArrayList<ValidationError>();
       list.add(new ValidationError("title", "title is blank"));
       errors.put("title", list);
     }
-    return null;
+    return errors;
   }
 
   @Override

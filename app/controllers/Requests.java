@@ -12,8 +12,6 @@ import views.html.request.*;
 
 public class Requests extends Controller {
 
-    final static Form<Request> requestForm = form(Request.class);
-
     @Security.Authenticated(Auth.class)
     public static Result index() {
         List<Request> requests = Request.all();
@@ -21,13 +19,13 @@ public class Requests extends Controller {
     }
 
     public static Result newForm() {
-        return ok(form.render(requestForm));
+        return ok(form.render(form(Request.class)));
     }
 
     public static Result create() {
         Form<Request> requestForm = form(Request.class).bindFromRequest();
         if(requestForm.hasErrors()) {
-          badRequest(form.render(requestForm));
+          return badRequest(form.render(requestForm));
         }
         Request request = requestForm.get();
         request.save();
