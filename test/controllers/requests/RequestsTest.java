@@ -14,7 +14,6 @@ import static play.data.Form.*;
 import static play.test.Helpers.*;
 import static org.fest.assertions.Assertions.*;
 import static org.junit.Assert.*;
-import static org.hamcrest.Matchers.*;
 
 import models.Request;
 import models.User;

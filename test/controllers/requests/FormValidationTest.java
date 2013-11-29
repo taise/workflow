@@ -8,7 +8,6 @@ import org.junit.runner.RunWith;
 import play.mvc.*;
 
 import static org.fest.assertions.Assertions.*;
-import static org.hamcrest.Matchers.*;
 import static play.test.Helpers.*;
 
 import models.Request;
