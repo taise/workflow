@@ -42,7 +42,8 @@ public class RequestsTest {
   @Test
   public void callNewForm() {
     Result result = callAction(
-        controllers.routes.ref.Requests.newForm()
+        controllers.routes.ref.Requests.newForm(),
+        fakeRequest().withSession("email", "alice@email.com")
         );
     assertResultOk(result);
   }
@@ -55,6 +56,7 @@ public class RequestsTest {
     Result result = callAction(
           controllers.routes.ref.Requests.create(),
           fakeRequest().withFormUrlEncodedBody(params)
+                       .withSession("email", "alice@email.com")
         );
 
     assertThat(Request.count()).isEqualTo(before_count + 1);
@@ -63,7 +65,10 @@ public class RequestsTest {
   @Test
   public void callShow() {
     Ebean.save((List) Yaml.load("testData/requests.yml"));
-    Result result = callAction(controllers.routes.ref.Requests.show(2));
+    Result result = callAction(
+          controllers.routes.ref.Requests.show(2),
+          fakeRequest().withSession("email", "alice@email.com")
+        );
     assertResultOk(result);
     assertThat(contentAsString(result)).contains("create Request 2");
   }

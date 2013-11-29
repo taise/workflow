@@ -98,6 +98,7 @@ public class FormValidationTest {
       return callAction(
           controllers.routes.ref.Requests.create(),
           fakeRequest().withFormUrlEncodedBody(params)
+                       .withSession("email", "alice@email.com")
           );
     }
 
