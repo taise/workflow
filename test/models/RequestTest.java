@@ -4,9 +4,7 @@ import models.Request;
 import models.User;
 
 import org.junit.*;
-import static org.junit.Assert.*;
 import static org.fest.assertions.api.Assertions.assertThat;
-import play.data.validation.ValidationError;
 
 import com.avaje.ebean.*;
 
@@ -37,19 +35,19 @@ public class RequestTest {
         );
 
     assertRequestModel(req, params);
-    assertEquals(requester.name, req.requester.name);
+    assertThat(req.requester.name).isEqualTo(requester.name);
   }
 
   @Test
   public void all() {
     List<Request> requests = Request.all();
-    assertEquals(3, requests.size());
-    assertEquals("Request test", requests.get(0).title);
+    assertThat(requests.size()).isEqualTo(3);
+    assertThat(requests.get(0).title).isEqualTo("Request test");
   }
 
   @Test
   public void count() {
-    assertSame(3, Request.count());
+    assertThat(Request.count()).isEqualTo(3);
   }
 
   @Test
@@ -65,11 +63,11 @@ public class RequestTest {
         );
     req.save();
 
-    assertNotNull(req.id);
+    assertThat(req.id).isNotNull();
     Request createdReq
       = Request.find.byId(req.id);
     assertRequestModel(createdReq, params);
-    assertEquals(requester.name, createdReq.requester.name);
+    assertThat(createdReq.requester.name).isEqualTo(requester.name);
   }
 
   @Test(expected = IllegalStateException.class)
