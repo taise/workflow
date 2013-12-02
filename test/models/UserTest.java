@@ -6,9 +6,9 @@ import models.User;
 import org.junit.*;
 import play.libs.Yaml;
 import com.avaje.ebean.*;
+import static org.fest.assertions.api.Assertions.assertThat;
 
 import static org.junit.Assert.*;
-import static org.hamcrest.Matchers.*;
 import static play.test.Helpers.*;
 
 public class UserTest {
@@ -63,7 +63,7 @@ public class UserTest {
     assertNull(user);
   }
 
-  public Map defaultParams() {
+  public Map<String,String> defaultParams() {
     Map<String,String> params = new HashMap<String,String>();
     params.put("name","Alice");
     params.put("email","alice@email.com");
@@ -75,13 +75,13 @@ public class UserTest {
   }
 
   public void assertUserModel(User user, Map<String,String> params) {
-    assertEquals(params.get("name"), user.name);
-    assertEquals(params.get("email"), user.email);
-    assertEquals(params.get("password"), user.password);
-    assertEquals(params.get("company"), user.company);
-    assertEquals(params.get("division"), user.division);
-    assertEquals(params.get("post"), user.post);
-    assertThat(new Date(), greaterThanOrEqualTo(user.createdAt));
-    assertThat(new Date(), greaterThanOrEqualTo(user.updatedAt));
+    assertThat(user.name).isEqualTo(params.get("name"));
+    assertThat(user.email).isEqualTo(params.get("email"));
+    assertThat(user.password).isEqualTo(params.get("password"));
+    assertThat(user.company).isEqualTo(params.get("company"));
+    assertThat(user.division).isEqualTo(params.get("division"));
+    assertThat(user.post).isEqualTo(params.get("post"));
+    assertThat(user.createdAt).isToday();
+    assertThat(user.updatedAt).isToday();
   }
 }

@@ -5,8 +5,7 @@ import models.User;
 
 import org.junit.*;
 import static org.junit.Assert.*;
-import static org.hamcrest.Matchers.*;
-import org.hamcrest.collection.*;
+import static org.fest.assertions.api.Assertions.assertThat;
 import play.data.validation.ValidationError;
 
 import com.avaje.ebean.*;
@@ -88,10 +87,10 @@ public class RequestTest {
   }
 
   public void assertRequestModel(Request req, Map<String,String> params) {
-    assertEquals(params.get("title"), req.title);
-    assertEquals(params.get("description"), req.description);
-    assertEquals(params.get("targetDate"), req.targetDate);
-    assertThat(new Date(), greaterThanOrEqualTo(req.createdAt));
-    assertThat(new Date(), greaterThanOrEqualTo(req.updatedAt));
+    assertThat(req.title).isEqualTo(params.get("title"));
+    assertThat(req.description).isEqualTo(params.get("description"));
+    assertThat(req.targetDate).isEqualTo(params.get("targetDate"));
+    assertThat(req.createdAt).isToday();
+    assertThat(req.updatedAt).isToday();
   }
 }

@@ -6,8 +6,7 @@ libraryDependencies ++= Seq(
   javaJdbc,
   javaEbean,
   cache,
-  "org.hamcrest" % "hamcrest-core" % "1.3.RC2" % "test",
-  "org.hamcrest" % "hamcrest-library" % "1.3.RC2" % "test"
-)     
+  "org.easytesting" % "fest-assert-core" % "2.0M10" % "test"
+)
 
 play.Project.playJavaSettings
